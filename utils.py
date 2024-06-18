@@ -13,12 +13,11 @@ def dialog(message):
     print("=" * length)
     print(f"= {message} =")
     print("=" * length)
-
-    time.sleep(1)
-
+    print()
 
 def invalidInput(choice):
     dialog(f"[{choice}]: is not a valid input")
+    time.sleep(1)
 
 
 def validateInput(input: str):

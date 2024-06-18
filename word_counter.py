@@ -1,4 +1,5 @@
 import re
+import time
 
 
 def word_counter():
@@ -8,7 +9,3 @@ def word_counter():
 
 def getWordCount(sentence: str) -> int:
     return len(re.findall("[\\w-]+", sentence))
-
-
-if __name__ == "__main__":
-    word_counter()
