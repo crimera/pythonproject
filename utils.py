@@ -7,17 +7,18 @@ def clear():
 
 
 def dialog(message):
+    clear()
     length = len(message) + 4
 
     print("=" * length)
     print(f"= {message} =")
     print("=" * length)
 
+    time.sleep(1)
+
 
 def invalidInput(choice):
-    clear()
     dialog(f"[{choice}]: is not a valid input")
-    time.sleep(1)
 
 
 def validateInput(input: str):

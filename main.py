@@ -1,6 +1,8 @@
 from word_counter import word_counter
-from utils import clear, invalidInput
+from utils import clear, invalidInput, dialog
 from number_guess import number_guess
+import keyboard
+import time
 
 from funcs import (
     calculator,
@@ -24,7 +26,31 @@ def runScript(script):
             break
 
 
+def runChoice(choice: int):
+    if choice == 0:
+        runScript(word_counter)
+    elif choice == 1:
+        runScript(calculator)
+    elif choice == 2:
+        runScript(celsius_to_fahrenheit)
+    elif choice == 3:
+        runScript(fahrenheit_to_celsius)
+    elif choice == 4:
+        runScript(fibo_prog)
+    elif choice == 5:
+        runScript(factorial_prog)
+    elif choice == 6:
+        runScript(is_palindrome)
+    elif choice == 7:
+        runScript(is_prime)
+    elif choice == 8:
+        runScript(rock_paper_scissors)
+    elif choice == 9:
+        runScript(number_guess)
+
+
 if __name__ == "__main__":
+    cursor: int = 0
     while True:
         clear()
 
@@ -43,36 +69,24 @@ if __name__ == "__main__":
         ]
 
         for index, option in enumerate(options):
-            print(f"[{index+1}] {option}")
+            print(f"[{"x" if cursor==index else " "}] {option}")
 
-        choice = input("\ninput ~> ")
+        while True:
+            time.sleep(0.1)
+            key = keyboard.read_key()
 
-        try:
-            choice = int(choice)
-        except ValueError:
-            invalidInput(choice)
-            continue
+            if key == "up":
+                if cursor < 0:
+                    cursor = len(options) - 1
+                else:
+                    cursor -= 1
+            elif key == "down":
+                if cursor > len(options) - 1:
+                    cursor = 0
+                else:
+                    cursor += 1
+            elif key == "enter":
+                runChoice(cursor)
 
-        if choice > len(options):
-            invalidInput(choice)
-            continue
-        elif choice == 1:
-            runScript(word_counter)
-        elif choice == 2:
-            runScript(calculator)
-        elif choice == 3:
-            runScript(celsius_to_fahrenheit)
-        elif choice == 4:
-            runScript(fahrenheit_to_celsius)
-        elif choice == 5:
-            runScript(fibo_prog)
-        elif choice == 6:
-            runScript(factorial_prog)
-        elif choice == 7:
-            runScript(is_palindrome)
-        elif choice == 8:
-            runScript(is_prime)
-        elif choice == 9:
-            runScript(rock_paper_scissors)
-        elif choice == 10:
-            runScript(rock_paper_scissors)
+            if key is not None:
+                break
