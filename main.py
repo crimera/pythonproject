@@ -1,25 +1,17 @@
 from word_counter import word_counter
-from spotdl import download_from_spotify
-import os
-import time
+from utils import clear, invalidInput
+from number_guess import number_guess
 
-
-def clear():
-    os.system("cls" if os.name == "nt" else "clear")
-
-
-def dialog(message):
-    length = len(message) + 4
-
-    print("=" * length)
-    print(f"= {message} =")
-    print("=" * length)
-
-
-def invalidInput(choice):
-    clear()
-    dialog(f"[{choice}]: is not a valid input")
-    time.sleep(1)
+from funcs import (
+    calculator,
+    celsius_to_fahrenheit,
+    fahrenheit_to_celsius,
+    fibo_prog,
+    factorial_prog,
+    is_palindrome,
+    is_prime,
+    rock_paper_scissors,
+)
 
 
 def runScript(script):
@@ -37,7 +29,18 @@ if __name__ == "__main__":
         clear()
 
         print("Scripts:\n")
-        options = ["Count words"]
+        options = [
+            "Count words",
+            "Calculator",
+            "Celcsius to fahrenheit",
+            "Fahrenheit to celsius",
+            "Fibonacci",
+            "Factorial",
+            "Palindrome checker",
+            "Prime checker",
+            "Rock paper scissors",
+            "Rumber guess",
+        ]
 
         for index, option in enumerate(options):
             print(f"[{index+1}] {option}")
@@ -55,3 +58,21 @@ if __name__ == "__main__":
             continue
         elif choice == 1:
             runScript(word_counter)
+        elif choice == 2:
+            runScript(calculator)
+        elif choice == 3:
+            runScript(celsius_to_fahrenheit)
+        elif choice == 4:
+            runScript(fahrenheit_to_celsius)
+        elif choice == 5:
+            runScript(fibo_prog)
+        elif choice == 6:
+            runScript(factorial_prog)
+        elif choice == 7:
+            runScript(is_palindrome)
+        elif choice == 8:
+            runScript(is_prime)
+        elif choice == 9:
+            runScript(rock_paper_scissors)
+        elif choice == 10:
+            runScript(rock_paper_scissors)
