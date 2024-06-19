@@ -28,9 +28,10 @@ def number_guess():
 
     for i in range(1, guesses):
         guess = input("Enter your guess: ")
+        print()
 
         if not validateInput(guess):
-            return
+            continue
 
         guess = int(guess)
 
@@ -48,7 +49,3 @@ def number_guess():
             return
 
     print(f"You ran out of guesses, The number is {num}")
-
-
-if __name__ == "__main__":
-    number_guess()

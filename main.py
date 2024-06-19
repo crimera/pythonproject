@@ -1,6 +1,4 @@
-from word_counter import word_counter
 from utils import clear, dialog
-from number_guess import number_guess
 import keyboard
 import time
 
@@ -15,6 +13,10 @@ from funcs import (
     rock_paper_scissors,
 )
 
+from word_counter import word_counter
+from number_guess import number_guess
+from password_gen import strong_pass_generator
+
 
 def runScript(script, name: str):
     input()
@@ -27,6 +29,12 @@ def runScript(script, name: str):
             break
 
 
+def closeApp():
+    clear()
+    print("App exited")
+    exit()
+
+
 options = [
     "Count words",
     "Calculator",
@@ -37,7 +45,8 @@ options = [
     "Palindrome checker",
     "Prime checker",
     "Rock paper scissors",
-    "Rumber guess",
+    "Number guess",
+    "Password generator",
 ]
 
 
@@ -62,9 +71,11 @@ def runChoice(choice: int):
         runScript(rock_paper_scissors, options[choice])
     elif choice == 9:
         runScript(number_guess, options[choice])
+    elif choice == 10:
+        runScript(strong_pass_generator, options[choice])
 
 
-if __name__ == "__main__":
+def main():
     cursor: int = 0
     while True:
         clear()
@@ -72,26 +83,37 @@ if __name__ == "__main__":
         print("Scripts:\n")
 
         for index, option in enumerate(options):
-            print(f"[{"x" if cursor==index else " "}] {option}")
+            print(f"{">" if cursor==index else " "} {option}")
 
-        print("\nUse arrow keys to select, press [enter] to choose option")
+        print("\nUse arrow keys to select, press [enter] to proced, press [q] to exit")
 
         while True:
-            time.sleep(0.1)
+            time.sleep(0.2)
             key = keyboard.read_key()
 
             if key == "up":
-                if cursor < 0:
-                    cursor = len(options) - 1
-                else:
+                if 0 < cursor:
                     cursor -= 1
-            elif key == "down":
-                if cursor > len(options) - 1:
-                    cursor = 0
                 else:
+                    continue
+            elif key == "down":
+                if cursor < len(options) - 1:
                     cursor += 1
+                else:
+                    continue
+            elif key == "q":
+                closeApp()
             elif key == "enter":
                 runChoice(cursor)
+            else:
+                continue
 
             if key is not None:
                 break
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        closeApp()
