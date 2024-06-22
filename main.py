@@ -16,6 +16,7 @@ from funcs import (
 from word_counter import word_counter
 from number_guess import number_guess
 from password_gen import strong_pass_generator
+from vid_downloader import download_app
 
 
 def runScript(script, name: str):
@@ -47,6 +48,7 @@ options = [
     "Rock paper scissors",
     "Number guess",
     "Password generator",
+    "Youtube downloader",
 ]
 
 
@@ -73,6 +75,8 @@ def runChoice(choice: int):
         runScript(number_guess, options[choice])
     elif choice == 10:
         runScript(strong_pass_generator, options[choice])
+    elif choice == 11:
+        runScript(download_app, options[choice])
 
 
 def main():
